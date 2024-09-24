@@ -1,0 +1,48 @@
+from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_mail import Mail, Message
+from datetime import datetime
+import smtplib
+
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'
+
+# Konfigurasi Email
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = 'your_email@gmail.com'
+app.config['MAIL_PASSWORD'] = 'your_email_password'
+
+mail = Mail(app)
+
+# Halaman Utama untuk Penjadwalan
+@app.route('/')
+def index():
+    return render_template('schedule.html')
+
+# Rute untuk Membuat Jadwal
+@app.route('/schedule', methods=['POST'])
+def schedule():
+    email = request.form['email']
+    title = request.form['title']
+    description = request.form['description']
+    date = request.form['date']
+    time = request.form['time']
+
+    # Menggabungkan Tanggal dan Waktu
+    datetime_str = f"{date} {time}"
+    schedule_time = datetime.strptime(datetime_str, '%Y-%m-%d %H:%M')
+
+    # Kirim Notifikasi Email
+    msg = Message(f"Reminder: {title}",
+                  sender="your_email@gmail.com",
+                  recipients=[email])
+    msg.body = f"Hi,\n\nThis is a reminder for the following event:\n\nTitle: {title}\nDescription: {description}\nScheduled for: {schedule_time.strftime('%Y-%m-%d %H:%M')}"
+    mail.send(msg)
+
+    flash("Jadwal berhasil dibuat dan notifikasi email telah dikirim!", "success")
+    return redirect(url_for('index'))
+
+if __name__ == '__main__':
+    app.run(debug=True)
