@@ -1,0 +1,70 @@
+Docker adalah platform open-source yang dirancang untuk mengotomatisasi pengembangan, pengiriman, dan menjalankan aplikasi dalam wadah (container). Docker memungkinkan pengembang untuk membundel aplikasi beserta seluruh dependensinya ke dalam sebuah unit yang disebut container, sehingga aplikasi tersebut dapat dijalankan dengan konsisten di berbagai lingkungan, baik itu di komputer pengembang, server produksi, atau di layanan cloud.
+Berikut adalah beberapa konsep dasar terkait Docker:
+
+Container: Ini adalah unit terisolasi yang mencakup aplikasi dan semua yang dibutuhkannya untuk berjalan, seperti kode, pustaka, dan pengaturan. Container ini ringan dan dapat dijalankan di berbagai sistem operasi yang mendukung Docker tanpa perlu khawatir tentang perbedaan konfigurasi sistem.
+
+Image: Container Docker dibuat dari image. Image adalah template hanya-baca yang digunakan untuk membuat container. Image ini berisi semua yang dibutuhkan oleh aplikasi, termasuk file sistem, pustaka, dan dependensi. Anda bisa membayangkan image sebagai cetakan atau blueprint untuk container.
+
+Dockerfile: Ini adalah file teks yang berisi serangkaian instruksi yang digunakan untuk membuat sebuah Docker image. Dockerfile memungkinkan Anda untuk mengautomatisasi proses pembuatan image dengan mendefinisikan apa yang ingin Anda sertakan dalam container.
+
+Docker Hub: Ini adalah repositori online tempat pengguna dapat menyimpan dan berbagi Docker image. Anda dapat menarik (pull) image yang sudah ada atau mendorong (push) image yang Anda buat sendiri ke Docker Hub.
+
+Orchestration: Dalam skenario yang lebih kompleks, ketika Anda memiliki banyak container yang perlu bekerja bersama (misalnya dalam aplikasi skala besar), Docker menyediakan alat orkestrasi seperti Kubernetes atau Docker Swarm untuk mengelola penyebaran, pengaturan, dan penskalaan container.
+Docker memudahkan pengembangan aplikasi dengan menjamin bahwa kode yang berjalan di komputer lokal Anda juga akan berjalan sama di server produksi. Ini menghilangkan masalah "works on my machine" karena container menyediakan lingkungan yang konsisten di mana pun ia dijalankan.
+
+Cara Menjalankan Docker:
+Untuk menjalankan Docker di komputer Anda, ikuti langkah-langkah berikut:
+
+1. Instalasi Docker:
+Windows dan macOS:
+Unduh Docker Desktop dari situs resmi: https://www.docker.com/products/docker-desktop.
+Instal Docker Desktop dan ikuti petunjuk instalasi.
+Setelah instalasi selesai, buka Docker Desktop. Pastikan statusnya menunjukkan "Docker is running".
+Linux (misal, Ubuntu):
+Buka terminal, lalu jalankan perintah berikut:
+
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+Untuk memeriksa apakah Docker sudah terpasang dengan benar:
+
+docker --version
+
+2. Menjalankan Docker Container:
+Cek apakah Docker sudah berjalan dengan baik menggunakan:
+
+docker run hello-world
+Ini akan menarik (pull) image hello-world dari Docker Hub dan menjalankannya. Jika berhasil, Anda akan melihat pesan dari Docker.
+
+3. Menjalankan Aplikasi dengan Docker:
+Misalnya, untuk menjalankan server web berbasis Nginx:
+
+docker run -d -p 8080:80 nginx
+
+Penjelasan:
+docker run: Perintah untuk menjalankan container.
+-d: Menjalankan container di background (mode detached).
+-p 8080:80: Memetakan port 80 dalam container ke port 8080 di komputer host.
+nginx: Nama image yang akan digunakan. Jika image belum ada di lokal, Docker akan mengunduhnya dari Docker Hub.
+Setelah perintah tersebut dijalankan, buka browser dan akses http://localhost:8080 untuk melihat server Nginx yang sedang berjalan.
+
+4. Perintah Dasar Docker:
+Melihat container yang berjalan:
+docker ps
+
+Melihat semua container (termasuk yang sudah berhenti):
+docker ps -a
+
+Menghentikan container:
+docker stop <container_id>
+
+Menghapus container:
+docker rm <container_id>
+
+Menghapus image:
+docker rmi <image_name>
+
+Rangkuman:
+Docker adalah alat yang sangat berguna untuk membuat lingkungan pengembangan yang konsisten. Dengan menggunakan Docker,
+aplikasi dapat dibundel beserta seluruh dependensinya dalam container, sehingga memudahkan proses pengembangan dan deployment ke server manapun.
+
