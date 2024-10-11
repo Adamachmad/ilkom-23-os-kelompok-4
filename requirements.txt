@@ -1,2 +1,4 @@
 fastapi
 uvicorn
+
+isinya syarat untuk menjalankan program
