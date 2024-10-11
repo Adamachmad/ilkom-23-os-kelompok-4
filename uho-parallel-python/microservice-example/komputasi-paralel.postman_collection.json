@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "552541db-de30-410e-94ec-84f9bdd6e168",
+		"name": "komputasi-paralel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "299027",
+		"_collection_link": "https://winter-meteor-496050.postman.co/workspace/My-Workspace~08af2f3c-5c10-46dc-800f-0eb91172a592/collection/299027-552541db-de30-410e-94ec-84f9bdd6e168?action=share&source=collection_link&creator=299027"
+	},
+	"item": [
+		{
+			"name": "create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Bio\", \r\n    \"email\": \"labionda@uho.ac.id\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4567/users",
+					"host": [
+						"localhost"
+					],
+					"port": "4567",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Dimas\", \r\n    \"email\": \"dimas@example.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4567/users/2",
+					"host": [
+						"localhost"
+					],
+					"port": "4567",
+					"path": [
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get order detail",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/order/user/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"order",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
