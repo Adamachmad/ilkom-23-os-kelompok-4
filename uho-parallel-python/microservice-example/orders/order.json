@@ -1,0 +1,33 @@
+{
+    "order_id": 12345,
+    "order_date": "2024-09-17T14:00:00Z",
+    "status": "shipped",
+    "items": [
+      {
+        "product_id": 1111,
+        "product_name": "Smartphone X",
+        "quantity": 1,
+        "unit_price": 5000000,
+        "total_price": 5000000
+      },
+      {
+        "product_id": 2222,
+        "product_name": "Wireless Headphones",
+        "quantity": 2,
+        "unit_price": 500000,
+        "total_price": 1000000
+      }
+    ],
+    "shipping": {
+      "carrier": "JNE",
+      "tracking_number": "JNE123456789",
+      "shipping_cost": 30000,
+      "estimated_delivery": "2024-09-20"
+    },
+    "payment": {
+      "payment_method": "credit_card",
+      "payment_status": "paid",
+      "payment_date": "2024-09-17T14:15:00Z",
+      "total_amount": 6030000
+    }
+}

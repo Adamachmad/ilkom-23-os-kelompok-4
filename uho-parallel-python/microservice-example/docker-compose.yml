@@ -1,0 +1,24 @@
+services:
+  user-service:
+    build:
+      context: ./users
+      dockerfile: Dockerfile
+    ports:
+      - "4567:4567"
+    networks:
+      - my-network
+
+  order-service:
+    build:
+      context: ./orders
+      dockerfile: Dockerfile 
+    ports:
+      - "8000:8000"
+    depends_on:
+      - user-service
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
