@@ -1,0 +1,45 @@
+Materi: Thread dalam Sistem Operasi
+
+1. Pengertian Thread
+   - Thread adalah unit terkecil dari proses yang dapat dijadwalkan oleh sistem operasi.
+   - Satu proses dapat memiliki beberapa thread yang berbagi memori dan sumber daya.
+
+2. Perbedaan antara Proses dan Thread
+   - Proses:
+     - Memiliki ruang alamat sendiri.
+     - Memiliki overhead lebih tinggi dalam manajemen.
+     - Komunikasi antar proses (IPC) lebih kompleks.
+   - Thread:
+     - Berbagi ruang alamat dengan thread lain dalam proses yang sama.
+     - Lebih ringan dan efisien dalam manajemen.
+     - Komunikasi antar thread lebih mudah.
+
+3. Keuntungan Menggunakan Thread
+   - Paralelisme: Memungkinkan eksekusi simultan, meningkatkan kinerja.
+   - Responsif: Aplikasi tetap responsif saat menjalankan tugas berat.
+   - Penggunaan Sumber Daya yang Efisien: Thread lebih hemat sumber daya dibandingkan proses.
+
+4. Model Thread
+   - User-Level Threads: Dikelola oleh aplikasi, tidak terlihat oleh sistem operasi.
+   - Kernel-Level Threads: Dikelola oleh sistem operasi, dapat dijadwalkan secara langsung oleh kernel.
+
+5. Manajemen Thread
+   - Pembuatan Thread: Biasanya menggunakan API seperti POSIX Threads (pthreads) di Unix/Linux atau Win32 Threads di Windows.
+   - Terminasi Thread: Proses yang menghentikan thread secara normal atau paksa.
+   - Sinkronisasi: Menggunakan mekanisme seperti mutex, semaphore, dan monitor untuk mencegah kondisi balapan (race conditions).
+
+6. Sinkronisasi Thread
+   - Mutex: Digunakan untuk melindungi akses ke sumber daya bersama.
+   - Semaphore: Mengatur akses ke beberapa sumber daya atau untuk pembatasan jumlah thread yang dapat mengakses sumber daya.
+   - Deadlock: Situasi di mana dua atau lebih thread saling menunggu untuk mendapatkan sumber daya yang tidak akan pernah tersedia.
+
+7. Contoh Kasus Penggunaan
+   - Aplikasi Multithreading: Web server yang menangani beberapa permintaan sekaligus, aplikasi GUI yang tetap responsif saat memproses data, dan pemrograman jaringan.
+
+8. Alat dan Teknik
+   - Debugging Thread: Menggunakan alat seperti gdb (GNU Debugger) untuk melacak masalah dalam aplikasi multithread.
+   - Profiling: Menganalisis kinerja aplikasi multithreading untuk menemukan bottleneck.
+
+9. Isu Lanjutan
+   - Thread Pooling: Menggunakan sekumpulan thread untuk mengelola beban kerja dengan lebih efisien.
+   - Thread Affinity: Mengaitkan thread tertentu dengan CPU tertentu untuk meningkatkan kinerja.
