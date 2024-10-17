@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+    pid_t pid = fork();
+
+    if (pid < 0) {
+        // Fork gagal
+        printf("Fork gagal\n");
+        return 1;
+    } else if (pid == 0) {
+        // Proses anak
+        printf("Ini adalah proses anak dengan PID: %d\n", getpid());
+    } else {
+        // Proses induk
+        printf("Ini adalah proses induk dengan PID: %d\n", getpid());
+    }
+
+    return 0;
+}
