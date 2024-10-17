@@ -1,0 +1,48 @@
+Berikut adalah beberapa topik penting yang sering dibahas dalam materi sistem operasi:
+
+### 1. **Pengertian Sistem Operasi**
+   - Definisi dan fungsi sistem operasi.
+   - Peran sebagai penghubung antara perangkat keras dan perangkat lunak.
+
+### 2. **Komponen Sistem Operasi**
+   - Kernel: komponen inti yang mengelola sumber daya sistem.
+   - User Interface: antarmuka pengguna (GUI vs. CLI).
+   - Sistem File: pengelolaan penyimpanan data.
+
+### 3. **Proses dan Manajemen Proses**
+   - Pengertian proses dan thread.
+   - Status proses (baru, siap, berjalan, tertunda, selesai).
+   - Manajemen proses: penjadwalan, sinkronisasi, dan interaksi antar proses.
+
+### 4. **Manajemen Memori**
+   - Memori utama dan sekunder.
+   - Pengalamatan memori dan manajemen memori (paging, segmentation).
+   - Swapping dan virtual memory.
+
+### 5. **Sistem File**
+   - Struktur dan pengorganisasian file.
+   - Operasi file (membaca, menulis, menghapus).
+   - Manajemen ruang disk dan akses kontrol.
+
+### 6. **Manajemen Sumber Daya**
+   - Pengelolaan CPU, memori, dan perangkat I/O.
+   - Penjadwalan CPU: algoritma round-robin, FIFO, SJF, dan lainnya.
+   - Deadlock: pengertian, kondisi terjadinya, dan cara penanganannya.
+
+### 7. **Keamanan dan Perlindungan**
+   - Otentikasi pengguna.
+   - Perlindungan terhadap data dan sumber daya.
+   - Ancaman dan serangan keamanan.
+
+### 8. **Sistem Operasi Jaringan**
+   - Pengertian sistem operasi jaringan.
+   - Protokol jaringan dan komunikasi antar sistem.
+
+### 9. **Sistem Operasi Khusus**
+   - Perbedaan antara sistem operasi desktop, server, dan embedded.
+   - Contoh sistem operasi populer: Windows, Linux, macOS, dan Unix.
+
+### 10. **Tren Terkini dalam Sistem Operasi**
+   - Virtualisasi dan kontainerisasi.
+   - Sistem operasi berbasis cloud.
+
