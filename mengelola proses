@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Daftar Proses yang Sedang Berjalan:"
+ps aux
+
