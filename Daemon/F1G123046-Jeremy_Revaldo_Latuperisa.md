@@ -15,11 +15,11 @@ Laragon adalah environment untuk mengelola local server yang digunakan dalam pen
 ## 4. Struktur File Website
 Buatlah folder website anda sebagai berikut:
 
-C:laragon\www\website\index.php
-C:laragon\www\website\login.php
-C:laragon\www\website\logout.php
-C:laragon\www\website\daemon.php
-C:laragon\www\website\logins.txt (sebagai penyimpanan login sementara)
+- C:laragon\www\website\index.php
+- C:laragon\www\website\login.php
+- C:laragon\www\website\logout.php
+- C:laragon\www\website\daemon.php
+- C:laragon\www\website\logins.txt (sebagai penyimpanan login sementara)
 
 ### a. File index.php
 File ini akan menampilkan form login:
