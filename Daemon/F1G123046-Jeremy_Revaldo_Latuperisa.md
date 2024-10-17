@@ -149,12 +149,12 @@ Untuk menghentikan daemon yang berjalan temukan PID-nya dan gunakan perintah kil
 
 ### Temukan PID dengan perintah:
 ```bash
-ps aux | grep php
+tasklist /FI "IMAGENAME eq php.exe"
 
 ```
 
 ### Setelah menemukan PID yang sesuai, gunakan perintah kill untuk menghentikan proses:
 ```bash
-kill <PID>
+taskkill /PID <PID> /F
 
 ```
