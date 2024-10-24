@@ -93,7 +93,7 @@ http://localhost:8000
 ```
 ### 5. Screenshot
 Tampilan Proses Menjalankan Script
-![Deskripsi Gambar](https://drive.google.com/file/d/1Dukdrh2ooFfHnuWCPvcOGXnZcB2F6Y9N/view?usp=sharing)
+![Deskripsi Gambar] (https://drive.google.com/file/d/1Dukdrh2ooFfHnuWCPvcOGXnZcB2F6Y9N/view?usp=sharing)
 
 
 Tampilan Web
