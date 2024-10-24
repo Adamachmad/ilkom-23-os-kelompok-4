@@ -161,7 +161,7 @@ taskkill /PID <PID> /F
 
 ## 8. Hasil Screenshot
 # Tampilan Index.php
-![Bukti Screenshoot](https://drive.google.com/file/d/1L87kpCTEGxsWAocANHRA8IfCwrn38Zxa/view?usp=sharing)
+![Screenshoot](https://drive.google.com/file/d/1L87kpCTEGxsWAocANHRA8IfCwrn38Zxa)
 
 # Log History Login
-![Bukti Screenshoot](https://drive.google.com/file/d/1wlmzNJ3fK5k7j7OWVnGNbe2J6HFVx4_v/view?usp=sharing)
+![Screenshoot](https://drive.google.com/file/d/1wlmzNJ3fK5k7j7OWVnGNbe2J6HFVx4_v)
