@@ -8,3 +8,8 @@ Efisiensi: Dockerfile menyimpan layer atau lapisan dalam bentuk cache, memungkin
 Konsistensi: Dengan Dockerfile, lingkungan aplikasi tetap konsisten dari mulai development hingga deployment, mengurangi kesalahan konfigurasi.
 Versi Image: Dockerfile mendukung tagging versi image untuk mengidentifikasi versi tertentu dari aplikasi, membuatnya mudah dikelola.
 
+## Kekurangan Dockerfile
+Kompleksitas Konfigurasi: Menulis Dockerfile untuk aplikasi kompleks bisa menjadi sulit, terutama untuk memastikan efisiensi dan menghindari konfigurasi yang berlebihan.
+Overhead Waktu Build: Proses build bisa memakan waktu lama jika Dockerfile kurang dioptimalkan atau memiliki terlalu banyak layer.
+Keamanan: Menyertakan banyak aplikasi atau dependensi di dalam Dockerfile meningkatkan potensi kerentanan jika tidak dilakukan pembaruan secara berkala.
+Masalah Debugging: Debugging pada container bisa jadi sulit, terutama jika aplikasi yang berjalan tidak menyediakan output yang jelas tentang kesalahan.
