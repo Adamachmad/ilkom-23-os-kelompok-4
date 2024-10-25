@@ -1,55 +1,91 @@
-Berikut adalah studi kasus dan laporan proyek lain yang menggunakan daemon proses dengan PHP native dan NSSM. Studi kasus ini adalah tentang pemantauan stok produk di sebuah toko online dan mencatat setiap perubahan stok ke dalam log.
+menggunakan daemon process dengan PHP native dan NSSM:
 
----
 
-# Pemantauan Stok Produk Menggunakan Daemon Process dengan NSSM dan Laragon
+Pemantauan Pengguna Aktif di Aplikasi Menggunakan Daemon Process dengan NSSM dan Laragon
 
-## 1. Pendahuluan
-Proyek ini bertujuan untuk memantau perubahan stok produk di toko online dan mencatat setiap perubahan ke dalam log menggunakan daemon process. Daemon ini akan berjalan di latar belakang dan memonitor file stok produk. Agar daemon tetap aktif meskipun terminal ditutup, kita akan menggunakan NSSM (Non-Sucking Service Manager) sebagai manajer layanan untuk menjalankan daemon process secara otomatis.
+# 1. Pendahuluan
+Proyek ini bertujuan untuk memantau pengguna aktif di aplikasi web. Pengguna aktif didefinisikan sebagai pengguna yang mengakses aplikasi dalam jangka waktu tertentu (misalnya, 10 menit terakhir). Setiap 5 menit, daemon akan memeriksa aktivitas pengguna di database, menghitung jumlah pengguna yang aktif, dan mencatatnya dalam log.
 
-## 2. Persiapan
-Pastikan Laragon telah diinstal sebagai lingkungan pengembangan lokal dan NSSM sebagai alat untuk mengelola daemon di Windows.
+Daemon process ini akan berjalan di latar belakang secara otomatis menggunakan **NSSM** dan dijalankan melalui PHP. Laporan jumlah pengguna aktif ini dapat digunakan untuk memantau aktivitas aplikasi secara real-time.
 
-### Langkah-langkah persiapan:
-1. **Unduh NSSM** dari situs resmi dan ekstrak ke direktori yang mudah diakses (misalnya `C:\nssm-2.24\win64`).
-2. Pastikan PHP dan Laragon terpasang dan dapat digunakan sebagai server lokal.
+# 2. Persiapan
+Sebelum memulai, pastikan Laragon dan PHP telah terinstal sebagai server lokal, dan NSSM sudah diinstal untuk mengelola daemon di Windows.
 
-## 3. Struktur Proyek
+#Langkah-langkah persiapan:
+1. Unduh NSSM dari situs resmi dan ekstrak ke direktori yang mudah diakses (misalnya `C:\nssm-2.24\win64`).
+2. Pastikan PHP dan Laragon terpasang serta berjalan sebagai server lokal.
+
+# 3. Struktur Proyek
 Struktur folder proyek adalah sebagai berikut:
 
 ```plaintext
-C:\laragon\www\inventory-monitor
+C:\laragon\www\user-activity-monitor
 ├── daemon.php
 ├── index.php
 ├── log.txt
 ├── config.php
-└── products.csv (file yang berisi data stok produk)
+└── db.sql (file untuk inisialisasi database)
 ```
 
-## 4. Membuat Website Pemantauan Stok Produk
+# 4. Membuat Sistem Pemantauan Pengguna Aktif
 
-### 4.1. File Konfigurasi
-**File**: `config.php`
+4.1. File Konfigurasi
+File: `config.php`
 
 ```php
 <?php
-define('PRODUCT_FILE', __DIR__ . '/products.csv'); // File yang berisi data stok
-define('LOG_FILE', __DIR__ . '/log.txt'); // File log
+// Database connection settings
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'user_activity');
+define('LOG_FILE', __DIR__ . '/log.txt');
+
+// Connect to the database
+function connect_db() {
+    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    return $conn;
+}
 ?>
 ```
 
-# 4.2. Tampilan Website
+4.2. Inisialisasi Database
+Buat file SQL untuk inisialisasi tabel yang menyimpan data aktivitas pengguna.
+
+File: `db.sql`
+
+```sql
+CREATE DATABASE IF NOT EXISTS user_activity;
+
+USE user_activity;
+
+CREATE TABLE IF NOT EXISTS user_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    activity_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+4.3. Tampilan Website
 File: `index.php`
 
 ```php
 <?php
 require 'config.php';
 
-function readLog() {
-    return file_exists(LOG_FILE) ? file_get_contents(LOG_FILE) : 'Log is empty.';
+function getActiveUsers() {
+    $conn = connect_db();
+    $tenMinutesAgo = date('Y-m-d H:i:s', time() - 600); // 10 menit yang lalu
+    $sql = "SELECT COUNT(DISTINCT user_id) AS active_users FROM user_logs WHERE activity_time > '$tenMinutesAgo'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    return $row['active_users'];
 }
 
-$logContent = readLog();
+$activeUsers = getActiveUsers();
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +93,7 @@ $logContent = readLog();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory Monitor</title>
+    <title>User Activity Monitor</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -72,128 +108,98 @@ $logContent = readLog();
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .logs {
+        .active-users {
             background: #f8f8f8;
             padding: 15px;
             border-radius: 4px;
             margin-top: 20px;
             font-family: monospace;
-            white-space: pre-wrap;
+            font-size: 24px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Inventory Monitor</h1>
-        <h2>Log Perubahan Stok Produk</h2>
-        <div class="logs">
-            <?php echo htmlspecialchars($logContent); ?>
+        <h1>User Activity Monitor</h1>
+        <h2>Pengguna Aktif dalam 10 Menit Terakhir</h2>
+        <div class="active-users">
+            <?php echo $activeUsers; ?> pengguna aktif
         </div>
     </div>
 </body>
 </html>
 ```
 
-# 4.3. Daemon Process
+4.4. Daemon Process
 File: `daemon.php`
 
 ```php
 <?php
 require 'config.php';
 
-class StockMonitor {
-    private $lastState = [];
+class UserActivityMonitor {
+    public function logActiveUsers() {
+        $conn = connect_db();
+        $tenMinutesAgo = date('Y-m-d H:i:s', time() - 600); // 10 menit yang lalu
+        $sql = "SELECT COUNT(DISTINCT user_id) AS active_users FROM user_logs WHERE activity_time > '$tenMinutesAgo'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $activeUsers = $row['active_users'];
 
-    public function __construct() {
-        if (!file_exists(LOG_FILE)) {
-            file_put_contents(LOG_FILE, "Log file created.\n");
-        }
-        $this->lastState = $this->readStockData();
-    }
-
-    public function readStockData() {
-        $data = [];
-        if (($handle = fopen(PRODUCT_FILE, "r")) !== FALSE) {
-            while (($line = fgetcsv($handle)) !== FALSE) {
-                $data[$line[0]] = $line[1]; // ID Produk => Stok
-            }
-            fclose($handle);
-        }
-        return $data;
-    }
-
-    public function logChange($message) {
         $timestamp = date('Y-m-d H:i:s');
-        file_put_contents(LOG_FILE, "[$timestamp] $message\n", FILE_APPEND);
+        $logMessage = "[$timestamp] Pengguna aktif: $activeUsers\n";
+        file_put_contents(LOG_FILE, $logMessage, FILE_APPEND);
     }
 
     public function start() {
         while (true) {
-            $currentState = $this->readStockData();
-            foreach ($currentState as $productId => $stock) {
-                if (isset($this->lastState[$productId])) {
-                    if ($stock != $this->lastState[$productId]) {
-                        $this->logChange("Stock changed for Product ID $productId: Old Stock = {$this->lastState[$productId]}, New Stock = $stock");
-                    }
-                } else {
-                    $this->logChange("New Product added: Product ID $productId, Stock = $stock");
-                }
-            }
-
-            foreach ($this->lastState as $productId => $stock) {
-                if (!isset($currentState[$productId])) {
-                    $this->logChange("Product removed: Product ID $productId");
-                }
-            }
-
-            $this->lastState = $currentState;
-            sleep(5); // Cek setiap 5 detik
+            $this->logActiveUsers();
+            sleep(300); // Cek setiap 5 menit
         }
     }
 }
 
-$stockMonitor = new StockMonitor();
-$stockMonitor->start();
+$monitor = new UserActivityMonitor();
+$monitor->start();
 ?>
 ```
 
 # 5. Menjalankan Daemon Process Menggunakan NSSM
 
-# 5.1. Instalasi NSSM
-1. **Download dan Ekstrak NSSM** dari situs resmi.
-2. **Buka Command Prompt sebagai Administrator**.
-3. Jalankan perintah berikut untuk menginstal daemon process sebagai service di Windows:
+5.1. Instalasi NSSM
+1. Buka Command Prompt sebagai Administrator.
+2. Jalankan perintah berikut untuk menginstal daemon process sebagai service di Windows:
 
 ```bash
-C:\nssm-2.24\win64\nssm.exe install StockMonitor
+C:\nssm-2.24\win64\nssm.exe install UserActivityMonitor
 ```
 
-# 5.2. Konfigurasi Service
+5.2. Konfigurasi Service
 Isi jendela konfigurasi yang muncul sebagai berikut:
 - **Path**: Lokasi executable PHP (misalnya `C:\laragon\bin\php\php-8.1.10-Win32-vs16-x64\php.exe`).
-- **Startup Directory**: Lokasi direktori proyek (misalnya `C:\laragon\www\inventory-monitor`).
+- **Startup Directory**: Lokasi direktori proyek (misalnya `C:\laragon\www\user-activity-monitor`).
 - **Arguments**: Nama file daemon (`daemon.php`).
 
-# 5.3. Menjalankan dan Menghentikan Daemon
+5.3. Menjalankan dan Menghentikan Daemon
 - Untuk menjalankan daemon, gunakan perintah:
   ```bash
-  C:\nssm-2.24\win64\nssm.exe start StockMonitor
+  C:\nssm-2.24\win64\nssm.exe start UserActivityMonitor
   ```
 
 - Untuk menghentikan daemon, gunakan perintah:
   ```bash
-  C:\nssm-2.24\win64\nssm.exe stop StockMonitor
+  C:\nssm-2.24\win64\nssm.exe stop UserActivityMonitor
   ```
 
 # 6. Memantau Perubahan dan Log
-Setiap kali ada perubahan stok pada file `products.csv`, daemon akan mencatat perubahan tersebut di `log.txt`. Untuk melihat hasilnya, buka `index.php` di browser dan lihat perubahan stok yang tercatat di log.
+Setiap 5 menit, daemon akan menghitung jumlah pengguna aktif dalam 10 menit terakhir dan mencatatnya di `log.txt`. Anda dapat melihat log tersebut di halaman website `index.php`.
 
 # 7. Bukti Screenshoot Program Berhasil Berjalan
-- **Tampilan Website**: Menampilkan log perubahan stok produk.
-- **Log Perubahan**: Berisi catatan perubahan stok produk di `products.csv`.
+- **Tampilan Website**: Menampilkan jumlah pengguna aktif dalam 10 menit terakhir.
+- **Log Perubahan**: Berisi catatan jumlah pengguna aktif setiap 5 menit.
 
 # 8. Penutup
-Dengan konfigurasi ini, daemon process akan berjalan otomatis tanpa perlu dijalankan secara manual. NSSM akan memastikan daemon terus berjalan di latar belakang, dan jika terjadi masalah, daemon dapat di-restart dengan mudah.
+Dengan daemon process ini, sistem pemantauan pengguna aktif dapat berjalan otomatis tanpa perlu pengawasan manual. **NSSM** memastikan daemon terus berjalan di latar belakang, dan jika terjadi masalah, daemon dapat di-restart dengan mudah.
 
 ---
-
