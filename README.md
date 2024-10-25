@@ -21,3 +21,6 @@ Environment Variable: Menyediakan dukungan untuk variabel lingkungan (environmen
 Multi-Stage Build: Mengizinkan multi-stage build, di mana beberapa image dapat digunakan dalam satu Dockerfile untuk membuat image akhir yang lebih ringan.
 Custom Commands: Dockerfile mendukung berbagai instruksi untuk menyalin file (COPY), mengeksekusi perintah (RUN), dan menjalankan aplikasi (CMD), serta banyak lagi.
 
+## Komponen-Komponen Dockerfile
+FROM: Menentukan base image yang digunakan sebagai dasar. Ini adalah instruksi pertama dalam Dockerfile. Contoh: FROM ubuntu:latest
+
