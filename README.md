@@ -22,5 +22,30 @@ Multi-Stage Build: Mengizinkan multi-stage build, di mana beberapa image dapat d
 Custom Commands: Dockerfile mendukung berbagai instruksi untuk menyalin file (COPY), mengeksekusi perintah (RUN), dan menjalankan aplikasi (CMD), serta banyak lagi.
 
 ## Komponen-Komponen Dockerfile
-FROM: Menentukan base image yang digunakan sebagai dasar. Ini adalah instruksi pertama dalam Dockerfile. Contoh: FROM ubuntu:latest
+FROM: Menentukan base image yang digunakan sebagai dasar. Ini adalah instruksi pertama dalam Dockerfile. 
+Contoh: FROM ubuntu:latest
 
+RUN: Menjalankan perintah di dalam container dan menghasilkan layer baru pada image. 
+Contoh: RUN apt-get update && apt-get install -y nginx
+
+
+COPY: Menyalin file atau direktori dari host ke dalam image. 
+Contoh: COPY . /app
+
+WORKDIR: Menentukan direktori kerja dalam container. Semua perintah berikutnya akan dieksekusi di dalam direktori ini. 
+Contoh: WORKDIR /app
+
+CMD: Menyediakan instruksi default untuk menjalankan container. Biasanya digunakan untuk menjalankan aplikasi utama. 
+Contoh: CMD ["nginx", "-g", "daemon off;"]
+
+EXPOSE: Menentukan port yang akan digunakan untuk menghubungkan aplikasi. 
+Contoh: EXPOSE 80
+
+ENV: Mengatur environment variable di dalam container. 
+Contoh: ENV APP_ENV production
+
+ENTRYPOINT: Menentukan executable yang akan digunakan sebagai titik masuk. Biasanya dipasangkan dengan CMD. 
+Contoh: ENTRYPOINT ["python"]
+CMD ["app.py"]
+
+Dengan menggunakan Dockerfile, pengembangan dan pengaturan lingkungan aplikasi menjadi lebih efisien, cepat, dan konsisten.
