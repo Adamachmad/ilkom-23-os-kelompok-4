@@ -13,3 +13,11 @@ Kompleksitas Konfigurasi: Menulis Dockerfile untuk aplikasi kompleks bisa menjad
 Overhead Waktu Build: Proses build bisa memakan waktu lama jika Dockerfile kurang dioptimalkan atau memiliki terlalu banyak layer.
 Keamanan: Menyertakan banyak aplikasi atau dependensi di dalam Dockerfile meningkatkan potensi kerentanan jika tidak dilakukan pembaruan secara berkala.
 Masalah Debugging: Debugging pada container bisa jadi sulit, terutama jika aplikasi yang berjalan tidak menyediakan output yang jelas tentang kesalahan.
+
+## Fitur Utama Dockerfile
+Layering: Dockerfile memungkinkan aplikasi disusun dalam beberapa layer (lapisan), di mana setiap instruksi dalam Dockerfile akan membuat layer tersendiri.
+Caching: Dockerfile mendukung caching pada setiap layer, sehingga instruksi yang tidak berubah tidak perlu dibangun ulang.
+Environment Variable: Menyediakan dukungan untuk variabel lingkungan (environment variable) dengan instruksi ENV.
+Multi-Stage Build: Mengizinkan multi-stage build, di mana beberapa image dapat digunakan dalam satu Dockerfile untuk membuat image akhir yang lebih ringan.
+Custom Commands: Dockerfile mendukung berbagai instruksi untuk menyalin file (COPY), mengeksekusi perintah (RUN), dan menjalankan aplikasi (CMD), serta banyak lagi.
+
