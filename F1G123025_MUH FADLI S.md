@@ -64,3 +64,8 @@ http://localhost:9999
  ```
 # Screenshoot                                                                                                                                
 Tampilan Menjalankan
+https://drive.google.com/uc?id=1WABXrdDUwl8WSH4AhSPJ-W1kzqu8CAdf
+https://drive.google.com/uc?id=1W7zNAZcoBbdKKrCkuxpUAxtdM9qLsCzv
+
+
+
