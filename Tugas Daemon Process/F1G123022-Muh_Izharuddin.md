@@ -1,4 +1,4 @@
-menggunakan daemon process dengan PHP native dan NSSM:
+#cara menggunakan daemon process dengan PHP native dan NSSM:
 
 
 Pemantauan Pengguna Aktif di Aplikasi Menggunakan Daemon Process dengan NSSM dan Laragon
@@ -197,7 +197,10 @@ Setiap 5 menit, daemon akan menghitung jumlah pengguna aktif dalam 10 menit tera
 
 # 7. Bukti Screenshoot Program Berhasil Berjalan
 - **Tampilan Website**: Menampilkan jumlah pengguna aktif dalam 10 menit terakhir.
+- ![Deskripsi Gambar]([https://drive.google.com/uc?export=view&id=FILE_ID](https://drive.google.com/file/d/16uVFWi4U02970iOiXcKaVCpvg0CDYamR/view?usp=drive_link))
+
 - **Log Perubahan**: Berisi catatan jumlah pengguna aktif setiap 5 menit.
+![Deskripsi Gambar]([https://drive.google.com/uc?export=view&id=FILE_ID](https://drive.google.com/file/d/1qKcLeiWJPdWjGspM9NxzbIRs78abBJtE/view?usp=drive_link))
 
 # 8. Penutup
 Dengan daemon process ini, sistem pemantauan pengguna aktif dapat berjalan otomatis tanpa perlu pengawasan manual. **NSSM** memastikan daemon terus berjalan di latar belakang, dan jika terjadi masalah, daemon dapat di-restart dengan mudah.
