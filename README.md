@@ -1,3 +1,10 @@
 ## Pengertian Dockerfile
 Dockerfile merupakan skrip otomatisasi yang menyediakan perintah-perintah untuk membangun sebuah Docker Image, yang merupakan blueprint dari aplikasi yang mencakup semua kebutuhan seperti kode sumber, library, dependensi, dan konfigurasi runtime. Saat dieksekusi, Dockerfile akan membuat image yang kemudian dapat dijalankan dalam container Docker.
 
+## Kelebihan Dockerfile
+Portabilitas: Dockerfile membuat aplikasi dapat dijalankan di berbagai sistem tanpa khawatir masalah kompatibilitas, karena semuanya dibungkus dalam container.
+Otomatisasi: Dockerfile menyederhanakan pembuatan dan konfigurasi container secara otomatis.
+Efisiensi: Dockerfile menyimpan layer atau lapisan dalam bentuk cache, memungkinkan proses build yang lebih cepat karena layer yang sudah ada tidak perlu dibangun ulang.
+Konsistensi: Dengan Dockerfile, lingkungan aplikasi tetap konsisten dari mulai development hingga deployment, mengurangi kesalahan konfigurasi.
+Versi Image: Dockerfile mendukung tagging versi image untuk mengidentifikasi versi tertentu dari aplikasi, membuatnya mudah dikelola.
+
