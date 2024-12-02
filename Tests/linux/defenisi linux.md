@@ -1,0 +1,1 @@
+Linux adalah sistem operasi berbasis Unix yang open-source dan digunakan untuk berbagai keperluan seperti server, pengembangan perangkat lunak, dan komputasi sehari-hari. Linux terkenal karena stabilitas, keamanan, dan fleksibilitasnya.
