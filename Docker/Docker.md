@@ -49,3 +49,11 @@ docker run -d -p 8080:80 (nama image)
 Berikut contoh gambarnya:
 ![Deskripsi Gambar](https://drive.google.com/uc?id=1a6UNfJKE_uUtNyJA3p7cMGM2oPLRRUiV)
 
+## 4. Memeriksa Jika Container Sudah Berjalan
+1. Pada **Docker Desktop**  masuk ke tab **Container**
+2. Jika sudah berjalan icon kolom action akan berbentuk kotak
+![Deskripsi Gambar](https://drive.google.com/uc?id=16KOc0LzTQCY8wid7BFMEkKLwwtJfsKqU)
+
+## 5. Jika Sudah Berjalan Kunjungi Port Sesuai Dengan Container Yang ada
+Jika website berhasil terbuka, container berjalan tanpa error
+![Deskripsi Gambar](https://drive.google.com/uc?id=1c8jiIFwTWtHr7fI012quc-YXO1Fw4ke3)
