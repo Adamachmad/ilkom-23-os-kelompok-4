@@ -7,7 +7,7 @@ Docker adalah platform yang memungkinkan pengembangan, deployment, dan eksekusi 
 
 ## 2. Inisiasi Docker Image
 Untuk memulai dengan Docker, langkah pertama adalah inisiasi image. Berikut langkah-langkahnya:
-1. Buat sebuah folder untuk menyimpan file Dockerfile dan file index.
+1. Buat sebuah folder untuk menyimpan file Dockerfile dan file index.php
 2. Di dalam folder tersebut buat **Dockerfile**
 3. Masukan perintah berikut ke dalam file **Dockerfile**
 ```dockerfile
@@ -33,4 +33,14 @@ CMD ["apache2-foreground"]
 echo "Hello, World!";
 ?>
 ```
+Berikut contoh gambarnya:
+![Deskripsi Gambar](https://drive.google.com/uc?id=1a6UNfJKE_uUtNyJA3p7cMGM2oPLRRUiV)
 
+## 4. Memeriksa Jika Container Sudah Berjalan
+1. Pada **Docker Desktop**  masuk ke tab **Container**
+2. Jika sudah berjalan icon kolom action akan berbentuk kotak
+![Deskripsi Gambar](https://drive.google.com/uc?id=16KOc0LzTQCY8wid7BFMEkKLwwtJfsKqU)
+
+## 5. Jika Sudah Berjalan Kunjungi Port Sesuai Dengan Container Yang ada
+Jika website berhasil terbuka, container berjalan tanpa error
+![Deskripsi Gambar](https://drive.google.com/uc?id=1c8jiIFwTWtHr7fI012quc-YXO1Fw4ke3)
