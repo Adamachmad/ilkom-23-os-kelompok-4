@@ -10,7 +10,7 @@ Untuk memulai dengan Docker, langkah pertama adalah inisiasi image. Berikut lang
 1. Buat sebuah folder untuk menyimpan file Dockerfile dan file index.
 2. Di dalam folder tersebut buat *Dockerfile*
 3. Masukan perintah berikut ke dalam file *Dockerfile*
-dockerfile
+```dockerfile
 # Gunakan base image PHP 8.2 dengan server built-in
 FROM php:8.2-apache
 
@@ -25,27 +25,27 @@ EXPOSE 80
 
 # Jalankan Apache di container
 CMD ["apache2-foreground"]
-
+```
 4. Buat satu folder lagi yang bernama php, lalu buat file *index.php* ke dalam folder php.
 5. Masukkan syntax php ke dalam file tersebut, contohnya:
-php
+```php
 <?php
 echo "Hello, World!";
 ?>
-
+```
 6. Lakukan perintah berikut untuk membuat *Docker Image*
-bash
+```bash
 docker build -t (nama image yang ingin dibuat) .
-
+```
 Berikut contoh gambarnya:
 ![Deskripsi Gambar](https://drive.google.com/uc?id=1jkGYsoyvSPQHLtcx-OKJ8eKHM6dCeDJk)
 
 ## 3. Menjalankan Container
 Setelah membuat *Docker Image* selanjutnya adalah untuk menjalankan container
 1. Jalankan command prompt
-bash
+```bash
 docker run -d -p 8080:80 (nama image)
-
+```
 Berikut contoh gambarnya:
 ![Deskripsi Gambar](https://drive.google.com/uc?id=1a6UNfJKE_uUtNyJA3p7cMGM2oPLRRUiV)
 
