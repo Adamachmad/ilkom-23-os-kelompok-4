@@ -1,1 +1,36 @@
-cara akses pertama kali docker
+# Docker Documentation
+Docker adalah platform yang memungkinkan pengembangan, deployment, dan eksekusi aplikasi di dalam container. Tugas ini bertujuan untuk memahami dasar penggunaan Docker melalui eksperimen praktis.
+
+## 1. Instalasi Docker
+- Mengunduh [Docker Desktop](https://www.docker.com/products/docker-desktop/) dari situs resmi.
+- Setelah mengunduh **Docker Desktop** jalankan **Docker Desktop** pada komputer anda
+
+## 2. Inisiasi Docker Image
+Untuk memulai dengan Docker, langkah pertama adalah inisiasi image. Berikut langkah-langkahnya:
+1. Buat sebuah folder untuk menyimpan file Dockerfile dan file index.
+2. Di dalam folder tersebut buat **Dockerfile**
+3. Masukan perintah berikut ke dalam file **Dockerfile**
+```dockerfile
+# Gunakan base image PHP 8.2 dengan server built-in
+FROM php:8.2-apache
+
+# Salin file index.php ke dalam direktori root web server
+COPY . /var/www/html/
+
+# Atur permission untuk memastikan file dapat diakses
+RUN chown -R www-data:www-data /var/www/html/
+
+# Expose port 80 untuk Apache
+EXPOSE 80
+
+# Jalankan Apache di container
+CMD ["apache2-foreground"]
+```
+4. Buat satu folder lagi yang bernama php, lalu buat file **index.php** ke dalam folder php.
+5. Masukkan syntax php ke dalam file tersebut, contohnya:
+```php
+<?php
+echo "Hello, World!";
+?>
+```
+
