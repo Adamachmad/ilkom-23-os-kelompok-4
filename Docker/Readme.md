@@ -98,10 +98,7 @@ Berikut adalah langkah-langkah untuk menjalankan Docker di WSL dengan PHP:
 ### Catatan Tambahan
 - Periksa container yang sedang berjalan:
   docker ps
-  ```
 - Menghentikan container:
   docker stop php-container
-  ```
 - Menghapus container:
   docker rm php-container
-  ```
