@@ -33,4 +33,19 @@ CMD ["apache2-foreground"]
 echo "Hello, World!";
 ?>
 ```
+6. Lakukan perintah berikut untuk membuat **Docker Image**
+```bash
+docker build -t (nama image yang ingin dibuat) .
+```
+Berikut contoh gambarnya:
+![Deskripsi Gambar](https://drive.google.com/uc?id=1jkGYsoyvSPQHLtcx-OKJ8eKHM6dCeDJk)
+
+## 3. Menjalankan Container
+Setelah membuat **Docker Image** selanjutnya adalah untuk menjalankan container
+1. Jalankan command prompt
+```bash
+docker run -d -p 8080:80 (nama image)
+```
+Berikut contoh gambarnya:
+![Deskripsi Gambar](https://drive.google.com/uc?id=1a6UNfJKE_uUtNyJA3p7cMGM2oPLRRUiV)
 
